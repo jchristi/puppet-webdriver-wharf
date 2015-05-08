@@ -2,6 +2,10 @@
 #
 #   * installs webdriver-wharf
 #
+# == Requires:
+#
+#   * stdlib
+#
 class webdriverwharf(
   $docker_image       = undef,
   $listen_port        = undef,
@@ -13,19 +17,35 @@ class webdriverwharf(
   $start_timeout      = undef,
 ){
 
-  # TODO: error if osver < RHEL7
-
-  package { ['git', 'python-pip', 'docker', 'docker-logrotate']:
-    ensure => installed,
+  case $::osfamily {
+    'RedHat': {
+      if versioncmp($::operatingsystemmajrelease, '7') < 0 {
+        fail("${module_name} requires ${$::osfamily} 7 or higher")
+      }
+    }
+    default: {
+      fail("${::osfamily} is not supported")
+    }
   }
+
+  # RPM is not as recent as pip
+  package { 'docker-py':
+    ensure => absent,
+  }
+
+  ensure_packages(['git', 'python-pip', 'docker', 'docker-logrotate'])
 
   Exec {
     path    => '/usr/bin:/bin:/sbin',
-    require => [ Package['python-pip'], Package['git'], ],
+    require => [
+      Package['docker-py'],
+      Package['python-pip'],
+      Package['git'],
+    ],
     before  => Service['webdriver-wharf'],
   }
 
-  exec { 'pip install docker-py': } #>=1.2
+  #exec { 'pip install docker-py>=1.2': }
   exec { 'pip install git+https://github.com/seandst/webdriver-wharf.git': }
 
   File { before => Service['webdriver-wharf'], }
@@ -39,13 +59,14 @@ class webdriverwharf(
   }
 
   service { 'docker':
-    enabled => true,
     ensure  => running,
+    enabled => true,
     require => Package['docker'],
   }
 
   service { 'webdriver-wharf':
+    ensure  => running,
     enabled => true,
-    ensure => running,
+    require => Service['docker'],
   }
 }
