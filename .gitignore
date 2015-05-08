@@ -1,0 +1,6 @@
+*.swp
+*.swo
+.vimrc
+spec/fixtures
+.bundle
+Gemfile.lock

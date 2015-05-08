@@ -1,0 +1,34 @@
+# Environment variables for webdriver-wharf
+
+# The docker image to use
+## default: cfmeqe/sel_ff_chrome
+WEBDRIVER_WHARF_IMAGE=<%= @docker_image || 'cfmeqe/sel_ff_chrome' %>
+
+# Number of containers to have on "hot standby" for checkout
+## default: 4
+WEBDRIVER_WHARF_POOL_SIZE=<%= @pool_size || 4 %>
+
+# Max time for an appliance to be checked out before it's
+# forcibly checked in, in seconds
+## default: 3600
+WEBDRIVER_WHARF_MAX_CHECKOUT_TIME=<%= @max_checkout_time || 3600 %>
+
+# Log level
+## default: info
+WEBDRIVER_WHARF_LOG_LEVEL=<%= @log_level || 'info' %>
+
+# Address to listen on
+## default: 0.0.0.0
+WEBDRIVER_WHARF_LISTEN_HOST=<%= @listen_host || '0.0.0.0' %>
+
+# Port to listen on
+## default: 4899
+WEBDRIVER_WHARF_LISTEN_PORT=<%= @listen_port || 4899 %>
+
+# Location of the SQLite database
+## default: ???
+#WEBDRIVER_WHARF_DB_URL=
+
+# Max amount of time allowed for docker to start selenium
+## default: 60
+WEBDRIVER_WHARF_START_TIMEOUT=<%= @start_timeout || 60 %>
