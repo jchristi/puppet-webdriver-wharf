@@ -60,13 +60,13 @@ class webdriverwharf(
 
   service { 'docker':
     ensure  => running,
-    enabled => true,
+    enable   => true,
     require => Package['docker'],
   }
 
   service { 'webdriver-wharf':
     ensure  => running,
-    enabled => true,
+    enable  => true,
     require => Service['docker'],
   }
 }
