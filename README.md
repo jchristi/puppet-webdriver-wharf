@@ -7,7 +7,7 @@ Currently only supports RHEL/CentOS 7+
 ## Parameters
 
 Parameter | Default
-- | -
+--- | ---
 docker_image | 'cfmeqe/sel_ff_chrome'
 listen_port | 4899
 listen_address | 0.0.0.0
