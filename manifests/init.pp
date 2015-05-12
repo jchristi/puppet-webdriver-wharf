@@ -33,9 +33,15 @@ class webdriverwharf(
     ensure => absent,
   }
 
+  # See https://bugzilla.redhat.com/show_bug.cgi?id=1207839
+  package { 'device-mapper-libs':
+    ensure => latest,
+    before => Package['docker'],
+  }
+
   ensure_packages(['git', 'python-pip', 'docker', 'docker-logrotate'])
 
-  Exec {
+  exec { 'pip install git+https://github.com/seandst/webdriver-wharf.git':
     path    => '/usr/bin:/bin:/sbin',
     require => [
       Package['docker-py'],
@@ -44,9 +50,6 @@ class webdriverwharf(
     ],
     before  => Service['webdriver-wharf'],
   }
-
-  #exec { 'pip install docker-py>=1.2': }
-  exec { 'pip install git+https://github.com/seandst/webdriver-wharf.git': }
 
   File { before => Service['webdriver-wharf'], }
 
@@ -60,7 +63,7 @@ class webdriverwharf(
 
   service { 'docker':
     ensure  => running,
-    enable   => true,
+    enable  => true,
     require => Package['docker'],
   }
 
