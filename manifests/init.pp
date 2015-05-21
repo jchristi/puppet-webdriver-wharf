@@ -49,6 +49,7 @@ class webdriverwharf(
       Package['git'],
     ],
     before  => Service['webdriver-wharf'],
+    unless  => 'test -d /usr/lib/python2.7/site-packages/webdriver_wharf',
   }
 
   File { before => Service['webdriver-wharf'], }
