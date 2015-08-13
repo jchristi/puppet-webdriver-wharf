@@ -13,6 +13,15 @@ WEBDRIVER_WHARF_POOL_SIZE=<%= @pool_size || 4 %>
 ## default: 3600
 WEBDRIVER_WHARF_MAX_CHECKOUT_TIME=<%= @max_checkout_time || 3600 %>
 
+# Interval to check for updates to the docker image (in seconds)
+## default: 3600 (1 hour)
+WEBDRIVER_WHARF_IMAGE_PULL_INTERVAL=<%= @image_pull_interval || 3600 %>
+
+# Interval to rebalance the active container pool. Frequent rebalancing
+# should not be necessary, and indicates a wharf bug.
+## default: 21600 (6 hours)
+WEBDRIVER_WHARF_REBALANCE_INTERVAL=<%= @rebalance_interval || 21600 %>
+
 # Log level
 ## default: info
 WEBDRIVER_WHARF_LOG_LEVEL=<%= @log_level || 'info' %>
@@ -25,10 +34,19 @@ WEBDRIVER_WHARF_LISTEN_HOST=<%= @listen_host || '0.0.0.0' %>
 ## default: 4899
 WEBDRIVER_WHARF_LISTEN_PORT=<%= @listen_port || 4899 %>
 
-# Location of the SQLite database
-## default: ???
-#WEBDRIVER_WHARF_DB_URL=
-
 # Max amount of time allowed for docker to start selenium
 ## default: 60
 WEBDRIVER_WHARF_START_TIMEOUT=<%= @start_timeout || 60 %>
+
+# Database URL that wharf should connect to for container tracking.
+#
+# By default, wharf creates and maintains its own SQLite database in
+# sane locations, though not necessarily the "correct" one according to
+# the Filesystem Hierarchy Standard.
+#
+# If set, this value is passed directly to sqlalchemy with no further
+# processing. See the sqlalchemy docs for information regarding the
+# construction of URLs. When using other database engines, wharf takes no
+# responsibility for installing the correct driver, needs the ability to
+# create tables, and most importantly has not been tested with that engine.
+#WEBDRIVER_WHARF_DB_URL=
