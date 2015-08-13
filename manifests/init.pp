@@ -7,16 +7,16 @@
 #   * stdlib
 #
 class webdriverwharf(
-  $docker_image         = undef,
-  $pool_size            = undef,
-  $max_checkout_time    = undef,
-  $image_pull_interval  = undef,
-  $rebalance_interval   = undef,
-  $log_level            = undef,
-  $listen_host          = undef,
-  $listen_port          = undef,
-  $start_timeout        = undef,
-  $db_url               = undef,
+  $docker_image         = false,
+  $pool_size            = false,
+  $max_checkout_time    = false,
+  $image_pull_interval  = false,
+  $rebalance_interval   = false,
+  $log_level            = false,
+  $listen_host          = false,
+  $listen_port          = false,
+  $start_timeout        = false,
+  $db_url               = false,
 ){
 
   case $::osfamily {
