@@ -28,6 +28,8 @@ describe 'webdriverwharf', :type => :module do
         regex = Regexp.new(".*=#{value}\n.*")
         it { should contain_file(sysconfig_file).with_content(regex) }
       end
+      it { should contain_file(sysconfig_file)
+        .with_content(/.*#WEBDRIVER_WHARF_DB_URL=\n.*/) }
     end
   end
 
