@@ -1,4 +1,7 @@
 # puppet-webdriver-wharf
+
+[![Build Status](https://travis-ci.org/jchristi/puppet-webdriver-wharf.svg)](https://travis-ci.org/jchristi/puppet-webdriver-wharf)
+
 Puppet module for [webdriver-wharf](https://github.com/seandst/webdriver-wharf)
 
 ## Support
