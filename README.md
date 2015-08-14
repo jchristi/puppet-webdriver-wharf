@@ -9,9 +9,12 @@ Currently only supports RHEL/CentOS 7+
 Parameter | Default
 --- | ---
 docker_image | 'cfmeqe/sel_ff_chrome'
-listen_port | 4899
-listen_address | 0.0.0.0
 pool_size | 4
 max_checkout_time | 3600
+image_pull_interval | 3600
+rebalance_interval | 21600
 log_level | 'info'
+listen_host | 0.0.0.0
+listen_port | 4899
 start_timeout| 60
+db_url | undef
