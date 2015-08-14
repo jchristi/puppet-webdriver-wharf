@@ -1,0 +1,20 @@
+{
+  "name": "jchristi-webdriverwharf",
+  "version": "1.0",
+  "author": "Jeremy Christian <jchristi@redhat.com>",
+  "license": "GPL-3.0",
+  "summary": "Puppet module for webdriver-wharf",
+  "source": "https://github.com/jchristi/puppet-webdriver-wharf",
+  "project_page": "https://github.com/jchristi/puppet-webdriver-wharf",
+  "issues_url": "https://github.com/jchristi/puppet-webdriver-wharf/issues",
+  "tags": ["webdriver","wharf","docker","selenium","webdriver-wharf"],
+  "operatingsystem_support": [
+    {
+    "operatingsystem":"RedHat",
+    "operatingsystemrelease": [ "7.0" ]
+    }
+  ],
+  "dependencies": [
+    { "name": "puppetlabs/stdlib", "version_requirement": ">= 2.0 < 5.0.0" }
+  ]
+}

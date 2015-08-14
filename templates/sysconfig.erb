@@ -49,4 +49,4 @@ WEBDRIVER_WHARF_START_TIMEOUT=<%= @start_timeout %>
 # construction of URLs. When using other database engines, wharf takes no
 # responsibility for installing the correct driver, needs the ability to
 # create tables, and most importantly has not been tested with that engine.
-<% if @db_url.nil? puts '#' %>WEBDRIVER_WHARF_DB_URL=<%= @db_url %>
+<% if @db_url.nil? %>#<% end %>WEBDRIVER_WHARF_DB_URL=<%= @db_url %>
